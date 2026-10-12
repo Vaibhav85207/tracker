@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14243a">
+  <meta name="description" content="Your 84-day Atlassian Data Engineer interview consistency tracker.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Consistency — Data Engineer Prep</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">84-DAY INTERVIEW PLAN</div>
+      <h1>Consistency</h1>
+      <p class="subtitle">Small daily wins. Senior Data Engineer readiness.</p>
+    </div>
+    <button id="installBtn" class="install-btn hidden" type="button">Install app</button>
+  </header>
+
+  <main>
+    <section class="hero panel">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">TODAY</div>
+          <div id="todayLabel" class="today-label">Loading date…</div>
+        </div>
+        <button id="jumpToday" class="ghost-btn" type="button">Go to today</button>
+      </div>
+      <div class="progress-row">
+        <div>
+          <div id="todayPercent" class="big-number">0%</div>
+          <div class="muted">Today's core completion</div>
+        </div>
+        <div class="progress-ring" id="todayRing" aria-label="Today's completion">
+          <span id="ringText">0/5</span>
+        </div>
+      </div>
+      <div class="progress-track"><div id="todayBar" class="progress-fill"></div></div>
+      <p id="encouragement" class="encouragement">Start small. Mark each commitment honestly.</p>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat panel"><span class="stat-label">Current streak</span><strong id="streak">0 days</strong><small>Consecutive fully completed days</small></article>
+      <article class="stat panel"><span class="stat-label">Fully completed</span><strong id="perfectDays">0</strong><small>Days with all 5 core tasks done</small></article>
+      <article class="stat panel"><span class="stat-label">Plan progress</span><strong id="planProgress">0%</strong><small>Core tasks completed so far</small></article>
+      <article class="stat panel"><span class="stat-label">Days logged</span><strong id="daysLogged">0/84</strong><small>Days with any core progress</small></article>
+    </section>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-view="daily" type="button">Daily plan</button>
+      <button class="tab" data-view="calendar" type="button">Calendar</button>
+      <button class="tab" data-view="review" type="button">Weekly review</button>
+    </nav>
+
+    <section id="dailyView" class="view">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR DAILY COMMITMENTS</div>
+          <h2 id="selectedDateTitle">Day 1</h2>
+        </div>
+        <div class="date-nav">
+          <button id="prevDay" class="icon-btn" aria-label="Previous day" type="button">‹</button>
+          <button id="nextDay" class="icon-btn" aria-label="Next day" type="button">›</button>
+        </div>
+      </div>
+      <div class="day-meta"><span id="dayNumber" class="pill">Day 1 of 84</span><span id="weekNumber" class="pill">Week 1</span></div>
+
+      <div class="panel task-panel">
+        <div class="task-row">
+          <div class="task-icon">Py</div>
+          <div class="task-copy"><strong>Python / DSA — Problem 1</strong><label for="py1">LeetCode number or problem name</label><input id="py1" class="problem-input" placeholder="e.g. #1 Two Sum"></div>
+          <select id="py1Status" class="status-select" aria-label="Python problem 1 status"><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select>
+        </div>
+        <div class="task-row">
+          <div class="task-icon">Py</div>
+          <div class="task-copy"><strong>Python / DSA — Problem 2</strong><label for="py2">LeetCode number or problem name</label><input id="py2" class="problem-input" placeholder="e.g. #217 Contains Duplicate"></div>
+          <select id="py2Status" class="status-select" aria-label="Python problem 2 status"><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select>
+        </div>
+        <div class="task-row">
+          <div class="task-icon sql">SQL</div>
+          <div class="task-copy"><strong>SQL — Problem 1</strong><label for="sql1">LeetCode number or problem name</label><input id="sql1" class="problem-input" placeholder="e.g. #175 Combine Two Tables"></div>
+          <select id="sql1Status" class="status-select" aria-label="SQL problem 1 status"><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select>
+        </div>
+        <div class="task-row">
+          <div class="task-icon sql">SQL</div>
+          <div class="task-copy"><strong>SQL — Problem 2</strong><label for="sql2">LeetCode number or problem name</label><input id="sql2" class="problem-input" placeholder="e.g. #176 Second Highest Salary"></div>
+          <select id="sql2Status" class="status-select" aria-label="SQL problem 2 status"><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select>
+        </div>
+        <div class="task-row theory-row">
+          <div class="task-icon theory">Th</div>
+          <div class="task-copy"><strong>Theory concept</strong><label id="theoryLabel" for="theoryStatus">Today's topic</label></div>
+          <select id="theoryStatus" class="status-select" aria-label="Theory status"><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select>
+        </div>
+      </div>
+
+      <div class="panel extra-panel">
+        <h3>Engineering practice</h3>
+        <p class="muted">Track the weekly practical task separately from your five daily commitments.</p>
+        <label class="field-label" for="engineeringTask">Task / deliverable</label>
+        <input id="engineeringTask" placeholder="e.g. Build an incremental Delta MERGE pipeline">
+        <div class="inline-field"><label for="engineeringStatus">Status</label><select id="engineeringStatus"><option>Not planned</option><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select></div>
+        <div class="inline-field"><label for="mockStatus">Weekly mock / review</label><select id="mockStatus"><option>Not planned</option><option>Not done</option><option>Partial</option><option>Done</option><option>Missed</option></select></div>
+      </div>
+
+      <div class="panel notes-panel">
+        <h3>Notes & mistake log</h3>
+        <label class="field-label" for="notes">What did you learn? What should you revisit?</label>
+        <textarea id="notes" rows="4" placeholder="Record mistakes, tricky cases, and review reminders (1, 3, and 7 days later)…"></textarea>
+        <div class="button-row">
+          <button id="saveBtn" class="primary-btn" type="button">Save today's progress</button>
+          <span id="saveMessage" role="status" class="save-message"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="calendarView" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">84 DAYS</div><h2>Calendar overview</h2></div></div>
+      <p class="muted">Tap a date to open that day's tasks. Green means all five core commitments are done.</p>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <div class="legend"><span><i class="legend-dot complete"></i>Complete</span><span><i class="legend-dot partial"></i>In progress</span><span><i class="legend-dot empty"></i>Not started</span></div>
+    </section>
+
+    <section id="reviewView" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">REFLECT, DON'T JUDGE</div><h2>Weekly review</h2></div></div>
+      <div id="weeklyCards" class="weekly-list"></div>
+      <div class="panel reflection-panel">
+        <h3>Weekly reflection</h3>
+        <label class="field-label" for="weeklyReflection">What worked, what didn't, and what will change next week?</label>
+        <textarea id="weeklyReflection" rows="5" placeholder="Be specific. Adjust the process, not the goal…"></textarea>
+        <button id="saveReflection" class="primary-btn" type="button">Save reflection</button>
+        <span id="reflectionMessage" role="status" class="save-message"></span>
+      </div>
+    </section>
+
+    <section class="footer-actions">
+      <button id="exportBtn" class="secondary-btn" type="button">Export backup (JSON)</button>
+      <label class="secondary-btn import-label" for="importFile">Import backup</label><input id="importFile" type="file" accept="application/json" class="hidden">
+      <button id="resetBtn" class="danger-btn" type="button">Reset all data</button>
+    </section>
+    <p class="privacy-note">Your progress is stored on this device/browser. Export a backup before changing phones or clearing browser data.</p>
+  </main>
+
+  <footer>Built for consistency — not perfection. Restart the next day; never restart the whole plan.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
